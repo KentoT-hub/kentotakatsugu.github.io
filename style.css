@@ -59,7 +59,7 @@ img,video{max-width:100%;height:auto;display:block;border-radius:12px}
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: url('images/skyscrapers2.jpeg') center/cover no-repeat;
+  background: url('images/Hero.jpg') center/cover no-repeat;
   z-index: -1;
   filter: grayscale(100%) brightness(0.5);
   z-index: -1;
