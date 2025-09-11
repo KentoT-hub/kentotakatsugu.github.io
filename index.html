@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kento Takatsugu | 自己紹介</title>
+  <link rel="preload" as="image" href="images/Hero.jpg">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Top Columns / Overlapping Hero -->
+  <header class="site-header">
+    <div class="top-columns">
+      <a class="brand" href="#/about" data-link>KT</a>
+      <nav class="nav">
+        <a href="#/about" data-link>基本情報</a>
+        <a href="#/strengths" data-link>自身の強み</a>
+        <a href="#/goals" data-link>今後の目標</a>
+      </nav>
+      <button class="menu-btn" aria-label="メニュー" id="menuBtn">☰</button>
+    </div>
+
+   <section class="hero">
+  <!-- Full background -->
+  <div class="hero-bg" role="img" aria-label="Skyscrapers background"></div>
+
+  <div class="hero-content">
+    <div class="hero-copy">
+      <h1 class="name-en fade-in">Kento Takatsugu</h1>
+      <h2 class="name-ja fade-in delay">高継健人</h2>
+      <div class="hero-cta reveal" data-delay="0.4">
+        <a class="btn" href="#/strengths" data-link>強みを見る</a>
+        <a class="btn ghost" href="#/goals" data-link>今後の目標</a>
+      </div>
+      <div id="routeTitle" class="route-title fade-in" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+
+  </header>
+
+  <!-- Router outlet (3+ “pages”) -->
+  <main id="app" tabindex="-1">
+    <!-- ABOUT PAGE -->
+    <section class="page" data-route="/about" aria-labelledby="aboutTitle">
+      <div class="section">
+        <h3 id="aboutTitle" class="section-title">自己紹介</h3>
+        <div class="about-grid">
+          <article class="reveal">
+            <p>
+              1997年生まれ。福岡県出身。大学卒業後、2020年より商社で輸入食品や発電所プロジェクトを経験。
+              国内外のクライアントに営業をする中で、データ分析に可能性を感じ、国・業界を問わずクライアント・消費者の生活の質の向上に貢献できるなりたく、データコンサルタントへの道を選びました。
+            </p>
+          </article>
+
+          <figure class="about-photo reveal">
+            <img src="images/skyscrapers2.jpeg" alt="Skyscrapers" />
+          </figure>
+        </div>
+      </div>
+
+      <!-- Hobbies as gallery with carousel -->
+      <div class="section">
+        <h3 class="section-title">趣味</h3>
+
+        <!-- Hobby 1: Cooking -->
+        <article class="hobby">
+          <h4><span class=orange>料理</span></h4>
+          <p>
+            イタリア語を学んでいたのがきっかけで、イタリア料理は大好きです。
+            それ以外にも特にMolecular Gastronomyに興味があり、友達・家族を呼んで作ったりしています。
+          </p>
+          <div class="carousel" aria-label="Molecular Gastronomy + Italian Meal">
+  <div class="carousel-track">
+    
+    <div class="carousel-item">
+      <div class="video-wrap">
+        <video src="images/Caviar_720.mov" muted loop playsinline controls></video>
+        <div class="video-overlay"></div>
+        <div class="video-caption">キャビア風パール</div>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <div class="video-wrap">
+        <video src="images/tomato2.0_720.mov" muted loop playsinline controls></video>
+        <div class="video-overlay"></div>
+        <div class="video-caption">トマト 2.0 – 新カプレーゼ </div>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <div class="video-wrap">
+        <video src="images/Caesar_720.mov" muted loop playsinline controls></video>
+        <div class="video-overlay"></div>
+        <div class="video-caption"> 一口シーザーサラダ</div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="carousel-prev" aria-label="前へ" data-carousel-prev>‹</button>
+  <button class="carousel-next" aria-label="次へ" data-carousel-next>›</button>
+  <div class="carousel-dots" data-carousel-dots></div>
+</div>
+
+        </article>
+
+        <!-- 趣味② ハイキング：テキスト左／写真右（重なりあり、箱なし） -->
+<section class="hobby-row">
+  <div class="hobby-text reveal">
+    <h4><span class="orange">ハイキング</span></h4>
+    <p>
+      運動は基本的になんでも好きですが、ハイキングは森林浴もできるので好んでよく行きます。
+      写真は以前、高尾山を24kgの錘を持って登ったものです。
+    </p>
+  </div>
+  <div class="hobby-pic" style="--bg: url('images/hiking.jpg');"></div>
+</section>
+<!-- 趣味③ 言語学習：写真左／テキスト右（重なりあり、箱なし） -->
+<section class="hobby-row reverse">
+  <div class="hobby-pic" style="--bg: url('images/roma.jpg');"></div>
+  <div class="hobby-text reveal">
+    <h4><span class="orange">言語学習</span></h4>
+    <p>
+      中学生の時からイタリア語を独学で初めて以来、言語学習が趣味になり、今でも日々少しづつ勉強しています。
+      大学はロシア語専攻でしたが、イタリアに交換留学し、４ヶ国語習得を試みました。
+    </p>
+  </div>
+</section>
+
+    </section>
+
+    <!-- STRENGTHS PAGE -->
+  <section class="page" data-route="/strengths" aria-labelledby="strengthsTitle">
+  <div class="section">
+    <h3 id="strengthsTitle" class="section-title">自身の強み</h3>
+
+    <div class="strengths-rows">
+      <!-- 1) photo RIGHT, text box LEFT -->
+      <div class="s-row">
+        <details class="s-acc">
+          <summary>関係構築</summary>
+          <div class="s-body">
+            社内外問わず横に視野を広げて、協力を得ることを意識しててきました。
+            前職では自部署で留まらず社外・グループ会社を巻き込んだアプローチで実績を積んでいました。
+          </div>
+        </details>
+        <figure class="s-media">
+          <img src="images/coordination.jpg" alt="チームでの協力">
+        </figure>
+      </div>
+
+      <!-- 2) photo LEFT, text box RIGHT -->
+      <div class="s-row">
+        <figure class="s-media">
+          <img src="images/international .jpg" alt="言語学習のイメージ">
+        </figure>
+        <details class="s-acc">
+          <summary>言語力</summary>
+          <div class="s-body">
+            英語はTOEIC990点、イタリア語はビジネスで交渉や通訳の使用経験があります。
+            ロシア語は日常会話程度なら可能です。
+            言語を駆使して国に関わらず最適な情報を収集できる人材を目指しています。
+          </div>
+        </details>
+      </div>
+
+      <!-- 3) photo RIGHT, text box LEFT -->
+      <div class="s-row">
+        <details class="s-acc">
+          <summary>マルチタスキング</summary>
+          <div class="s-body">
+            複数の事を同時に効率よく進めることを意識しています。
+            変化が激しい社会で、複数の新しい情報をインプット・アウトプットしていける人材を目指します。
+          </div>
+        </details>
+        <figure class="s-media">
+          <img src="images/multitask.jpg" alt="同時進行のイメージ">
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+    <!-- GOALS PAGE -->
+    <section class="page" data-route="/goals" aria-labelledby="goalsTitle">
+  <div class="section">
+    <div class="goals-ladder">
+      <!-- 短期 -->
+      <details class="goal-step">
+        <summary>短期目標</summary>
+        <div class="goal-body">
+          <p>
+            社内で信頼され、主体的に案件を進行することができるようになること。
+          </p>
+        </div>
+      </details>
+
+      <!-- 中期 -->
+      <details class="goal-step">
+        <summary>中期目標</summary>
+        <div class="goal-body">
+          <p>
+           案件主担当としてクライアントに信頼され、新規案件も獲得できるようになっていること。
+          </p>
+        </div>
+      </details>
+
+      <!-- 長期 -->
+      <details class="goal-step">
+        <summary>長期目標</summary>
+        <div class="goal-body">
+          <p>
+        国・業界を問わず、クライアントの夢を実現できるコンサルタントになっていること。
+          </p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+<nav id="pager" class="pager" aria-label="ページ送り">
+  <a class="pager-btn prev" href="#" data-link>
+    <span>← 前へ</span>
+    <small class="pager-label"></small>
+  </a>
+  <a class="pager-btn next" href="#" data-link>
+    <span>次へ →</span>
+    <small class="pager-label"></small>
+  </a>
+</nav>
+
+
+  </main>
+
+ <footer class="site-footer">
+  <div class="footer-container">
+    <!-- Email (left) -->
+    <div class="footer-email">
+      <a href="mailto:youremail@example.com"><span class=orange>takatsugu_kento@cellmuller.com</span></a>
+    </div>
+
+    <!-- Logo (center) -->
+    <div class="footer-logo">
+      <a class="brand" href="#/about" data-link>KT</a>
+    </div>
+
+    <!-- Social links (right) -->
+    <div class="footer-social">
+      <a href="https://cellmuller.com/" target="_blank">
+        <img src="images/cellmuller.png" alt="Company Homepage" />
+      </a>
+    </div>
+  </div>
+
+  <!-- Keep this at the very bottom -->
+  <div class="footer-copy">
+    <small>© <span id="year"></span> Kento Takatsugu</small>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
