@@ -96,6 +96,23 @@ function showRoute(path){
   revealNow();
 }
 
+// キーイベント Track SPA route changes in GTM/GA4
+function trackPageView(path){
+  window.dataLayer.push({
+    event: "page_view_spa",
+    page_path: path,
+    page_title: ROUTE_TITLES[path] || path
+  });
+}
+
+// キーイベント Hook into routing
+function handleHash(){
+  const path = location.hash.replace(/^#/, "") || "/about";
+  showRoute(path);
+  trackPageView(path);
+  
+}
+
 /* Hash routing */
 function handleHash(){
   const path = location.hash.replace(/^#/, "") || "/about";
