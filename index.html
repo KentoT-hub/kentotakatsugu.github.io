@@ -1,15 +1,52 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+ <!--DataLayer JS-->
+ <script>
+  window.dataLayer = window.dataLayer || [];
+  (function(){
+    var route = location.hash.replace(/^#/, '') || '/about';
+    var visits = parseInt(localStorage.getItem('visit_count')||'0',10)+1;
+    localStorage.setItem('visit_count', String(visits));
+    var landing = location.pathname + (location.hash || '');
+    var ref = document.referrer || '(direct)';
+    window.dataLayer.push({
+      event: 'bootstrap',
+      site_language: document.documentElement.lang || 'ja',
+      page_type: 'spa',
+      initial_route: route,
+      landing_page: landing,
+      referrer: ref,
+      visit_count: visits
+    });
+  })();
+ </script>
+ <!--End DataLayer JS-->
+
+ <!-- Google Tag Manager -->
+ <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+ 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+ })(window,document,'script','dataLayer','GTM-NDQ5BDV6');</script>
+ <!-- End Google Tag Manager -->
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kento Takatsugu | 自己紹介</title>
   <link rel="preload" as="image" href="images/Hero.jpg">
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+  
+ <!-- Google Tag Manager (noscript) -->
+ <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDQ5BDV6"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ <!-- End Google Tag Manager (noscript) -->
+
   <!-- Top Columns / Overlapping Hero -->
-  <header class="site-header">
+  <header class="site-header"> 
     <div class="top-columns">
       <a class="brand" href="#/about" data-link>KT</a>
       <nav class="nav">
@@ -62,42 +99,68 @@
       <div class="section">
         <h3 class="section-title">趣味</h3>
 
-        <!-- Hobby 1: Cooking -->
-        <article class="hobby">
-          <h4><span class="orange">料理</span></h4>
-          <p>
-            イタリア語を学んでいたのがきっかけで、イタリア料理は大好きです。
-            それ以外にも特にMolecular Gastronomyに興味があり、友達・家族を実験台にして作ったりしています。
-          </p>
-          <div class="carousel" aria-label="Molecular Gastronomy + Italian Meal">
-            <div class="carousel-track">
-              <div class="carousel-item">
-                <div class="video-wrap">
-                  <video src="images/Caviar_720.mov" muted loop playsinline controls></video>
-                  <div class="video-overlay"></div>
-                  <div class="video-caption">キャビア風パール</div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="video-wrap">
-                  <video src="images/tomato2.0_720.mov" muted loop playsinline controls></video>
-                  <div class="video-overlay"></div>
-                  <div class="video-caption">トマト 2.0 – 新カプレーゼ </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="video-wrap">
-                  <video src="images/Caesar_720.mov" muted loop playsinline controls></video>
-                  <div class="video-overlay"></div>
-                  <div class="video-caption"> 一口シーザーサラダ</div>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-prev" aria-label="前へ" data-carousel-prev>‹</button>
-            <button class="carousel-next" aria-label="次へ" data-carousel-next>›</button>
-            <div class="carousel-dots" data-carousel-dots></div>
-          </div>
-        </article>
+       <!-- Hobby 1: Cooking -->
+<article class="hobby">
+  <h4><span class="orange">料理</span></h4>
+  <p>
+    イタリア語を学んでいたのがきっかけで、イタリア料理は大好きです。
+    それ以外にも特にMolecular Gastronomyに興味があり、友達・家族を実験台にして作ったりしています。
+  </p>
+
+  <div class="carousel" aria-label="Molecular Gastronomy + Italian Meal">
+    <div class="carousel-track">
+
+      <!-- ITEM 1 -->
+      <div class="carousel-item">
+        <div class="video-wrap">
+          <video src="images/Caviar_720.mov" muted loop playsinline controls></video>
+          <div class="video-overlay"></div>
+        </div>
+        <div class="video-caption">キャビア風パール</div>
+        <div class="like-button-container">
+          <span class="material-icons like-icon" role="button" tabindex="0"
+                data-gtm="like" data-gtm-id="like_caviar">thumb_up</span>
+          <span class="like-count">0</span>
+        </div>
+      </div>
+
+      <!-- ITEM 2 -->
+      <div class="carousel-item">
+        <div class="video-wrap">
+          <video src="images/tomato2.0_720.mov" muted loop playsinline controls></video>
+          <div class="video-overlay"></div>
+        </div>
+        <div class="video-caption">トマト 2.0 – 新カプレーゼ</div>
+        <div class="like-button-container">
+          <span class="material-icons like-icon" role="button" tabindex="0"
+                data-gtm="like" data-gtm-id="like_tomato20">thumb_up</span>
+          <span class="like-count">0</span>
+        </div>
+      </div>
+
+      <!-- ITEM 3 -->
+      <div class="carousel-item">
+        <div class="video-wrap">
+          <video src="images/Caesar_720.mov" muted loop playsinline controls></video>
+          <div class="video-overlay"></div>
+        </div>
+        <div class="video-caption">一口シーザーサラダ</div>
+        <div class="like-button-container">
+          <span class="material-icons like-icon" role="button" tabindex="0"
+                data-gtm="like" data-gtm-id="like_caesar">thumb_up</span>
+          <span class="like-count">0</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Carousel Controls -->
+    <button class="carousel-prev" aria-label="前へ" data-carousel-prev>‹</button>
+    <button class="carousel-next" aria-label="次へ" data-carousel-next>›</button>
+    <div class="carousel-dots" data-carousel-dots></div>
+  </div>
+</article>
+
 
         <!-- 趣味② ハイキング：テキスト左／写真右（重なりあり、箱なし） -->
         <section class="hobby-row">

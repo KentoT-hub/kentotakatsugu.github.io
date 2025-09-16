@@ -222,3 +222,57 @@ function updatePager(path){
     nextA.querySelector(".pager-label").textContent = "";
   }
 }
+
+/* Like Buttons */
+window.dataLayer = window.dataLayer || [];
+
+(function setupLikeIcons(){
+  document.querySelectorAll(".like-icon").forEach(icon => {
+    const gtmId    = icon.getAttribute("data-gtm-id");
+    const countEl  = icon.parentElement.querySelector(".like-count");
+    const storeKey = "likes_" + gtmId;
+
+    // Load existing count (per browser)
+    let likes = parseInt(localStorage.getItem(storeKey) || "0", 10);
+    if (countEl) countEl.textContent = String(likes);
+
+    function toggleLike(){
+      const isLiked = icon.classList.contains("liked");
+
+      if (isLiked) {
+        // Unlike
+        likes = Math.max(0, likes - 1); // never below 0
+        icon.classList.remove("liked");
+        icon.setAttribute("aria-pressed", "false");
+      } else {
+        // Like
+        likes += 1;
+        icon.classList.add("liked");
+        icon.setAttribute("aria-pressed", "true");
+      }
+
+      // Update count
+      localStorage.setItem(storeKey, String(likes));
+      if (countEl) countEl.textContent = String(likes);
+
+      // Push event to GTM/GA4
+      window.dataLayer.push({
+        event: "like",
+        like_location: gtmId,
+        like_total: likes,
+        action: isLiked ? "unlike" : "like"
+      });
+    }
+
+    // Mouse click
+    icon.addEventListener("click", toggleLike);
+
+    // Keyboard (Enter or Space)
+    icon.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleLike();
+      }
+    });
+  });
+})();

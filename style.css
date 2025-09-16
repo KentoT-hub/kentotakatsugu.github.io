@@ -86,8 +86,8 @@ img,video{max-width:100%;height:auto;display:block;border-radius:12px}
 
 /* Carousel */
 .carousel{position:relative; overflow:hidden; border-radius:var(--radius); background:transparent; border:0}
-.carousel-track{display:flex; scroll-snap-type:x mandatory; overflow-x:auto; gap:12px; padding:12px}
-.carousel-item{min-width:80%; scroll-snap-align:center}
+.carousel-track{display:flex; flex-wrap: nowrap; scroll-snap-type:x mandatory; overflow-x:auto; gap:12px; padding:12px}
+.carousel-item{min-width:85%; scroll-snap-align:start; box-sizing:border-box;}
 .carousel-prev,.carousel-next{
   position:absolute; top:50%; transform:translateY(-50%);
   border:0; background:rgba(0,0,0,.5); color:#fff; width:36px; height:36px; border-radius:50%;
@@ -284,3 +284,83 @@ img,video{max-width:100%;height:auto;display:block;border-radius:12px}
   .footer-container{ flex-direction:column; gap:12px; }
 }
 .footer-copy{ margin-top:16px; text-align:center; font-size:13px; color:var(--muted); }
+/* ====== End Footer ====== */
+
+/* ====== Like Buttons ====== */
+/* Layout helpers */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:#0c0c0c; color:#fff; }
+.container { max-width: 880px; margin: 32px auto; padding: 0 16px; }
+
+/* Video block */
+.video-wrap video { width: 100%; height: auto; display: block; border-radius: 10px; }
+
+.video-caption-row{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.video-caption{
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 15px;
+  color: #fff;
+}
+
+/* Like container */
+.like-button-container{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Icon baseline (unliked) */
+.like-icon{
+  display: inline-block;
+  font-size: 22px;
+  cursor: pointer;
+  color: #999;
+  transition: color .25s ease, transform .2s ease;
+}
+
+/* Hover */
+.like-icon:hover{
+  color: #bbb; /* lighter grey hover before liked */
+}
+
+/* Count text */
+.like-count{
+  font-weight: 500;
+  font-size: 15px;
+  color: #fff;
+  min-width: 1ch;
+}
+
+/* Like Text */ 
+.like-text {
+  color: #fff;
+  font-weight: 500;
+  font-size: 15px;
+  color: #fff;
+  min-width: 1ch;
+}
+
+/* Liked state */
+.like-icon.liked{
+  color: #5ee1a7;   /* green when liked */
+  transform: scale(1.2);
+}
+
+/* Hover effect when liked */
+.like-icon.liked:hover{
+  color: #4ac08c;   /* darker green on hover */
+}
+
+/* Color the count when liked */
+.like-icon.liked ~ .like-text,
+.like-icon.liked ~ .like-count {
+  color: #5ee1a7;  
+}
+
