@@ -105,12 +105,26 @@ function trackPageView(path){
   });
 }
 
+function trackRouteCount(path){
+  let c = parseInt(sessionStorage.getItem('route_count') || '0', 10);
+  c += 1;
+  sessionStorage.setItem('route_count', String(c));
+  if (c >= 3 && !sessionStorage.getItem('route_3plus_fired')) {
+    window.dataLayer.push({
+      event: "key_3plus_pages",
+      page_path: path,
+      route_count: c
+    });
+    sessionStorage.setItem('route_3plus_fired', '1');
+  }
+}
+
 // キーイベント Hook into routing
 function handleHash(){
   const path = location.hash.replace(/^#/, "") || "/about";
-  showRoute(path);
-  trackPageView(path);
-  
+  showRoute(path);            // update UI
+  trackPageView(path);        // 👈 push custom SPA page view
+  trackRouteCount(path);      // 👈 optional: for the “3+ pages” key event
 }
 
 /* Hash routing */
