@@ -122,9 +122,9 @@ function trackRouteCount(path){
 // キーイベント Hook into routing
 function handleHash(){
   const path = location.hash.replace(/^#/, "") || "/about";
-  showRoute(path);            // update UI
-  trackPageView(path);        // 👈 push custom SPA page view
-  trackRouteCount(path);      // 👈 optional: for the “3+ pages” key event
+  showRoute(path);           
+  trackPageView(path);        
+  trackRouteCount(path);      
 }
 
 /* Hash routing */
