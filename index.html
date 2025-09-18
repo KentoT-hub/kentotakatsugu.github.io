@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
- <!--DataLayer JS-->
- <script>
+<!--DataLayer JS-->
+<script>
   window.dataLayer = window.dataLayer || [];
   (function(){
-    var route = location.hash.replace(/^#/, '') || '/about';
-    var visits = parseInt(localStorage.getItem('visit_count')||'0',10)+1;
+    var visits = Number(localStorage.getItem('visit_count')||0) + 1;
     localStorage.setItem('visit_count', String(visits));
-    var landing = location.pathname + (location.hash || '');
-    var ref = document.referrer || '(direct)';
+
     window.dataLayer.push({
       event: 'bootstrap',
-      site_language: document.documentElement.lang || 'ja',
-      page_type: 'spa',
-      initial_route: route,
-      landing_page: landing,
-      referrer: ref,
-      visit_count: visits
+      visit_count: visits,                                     // 新規/リピーター判定に使う
+      landing_page: location.pathname + (location.hash || ''), // 最初に入ったページ
+      referrer: document.referrer || '(direct)'                // 参照元（直接なら direct）
     });
   })();
- </script>
- <!--End DataLayer JS-->
+</script>
+<!--End DataLayer JS-->
+
 
  <!-- Google Tag Manager -->
  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
