@@ -259,40 +259,67 @@ window.dataLayer = window.dataLayer || [];
 
 (function setupLikeIcons(){
   document.querySelectorAll(".like-icon").forEach(icon => {
-    const gtmId    = icon.getAttribute("data-gtm-id");
-    const countEl  = icon.parentElement.querySelector(".like-count");
-    const storeKey = "likes_" + gtmId;
+    const gtmId     = icon.getAttribute("data-gtm-id");
+    const countEl   = icon.parentElement.querySelector(".like-count");
+    const storeKey  = "likes_" + gtmId;              // ブラウザごとの合計保持
+    const sessionKey = "liked_session_" + gtmId;     // セッションごとの1回制御
 
-    // Load existing count (per browser)
+    // Load existing count (合計は localStorage から復元)
     let likes = parseInt(localStorage.getItem(storeKey) || "0", 10);
     if (countEl) countEl.textContent = String(likes);
+
+    // セッション内で既にLike済みならUIも復元
+    if (sessionStorage.getItem(sessionKey) === "1") {
+      icon.classList.add("liked");
+      icon.setAttribute("aria-pressed", "true");
+    }
 
     function toggleLike(){
       const isLiked = icon.classList.contains("liked");
 
       if (isLiked) {
         // Unlike
-        likes = Math.max(0, likes - 1); // never below 0
+        likes = Math.max(0, likes - 1);
         icon.classList.remove("liked");
         icon.setAttribute("aria-pressed", "false");
+
+        // セッションのフラグ解除
+        sessionStorage.removeItem(sessionKey);
+
+        // GA4へ送信（増減 = -1）
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "like_button",
+          like_location: gtmId,
+          action: "unlike",
+          like_value: -1
+        });
+
       } else {
+        // すでにセッションでLike済みなら再Like禁止
+        if (sessionStorage.getItem(sessionKey) === "1") return;
+
         // Like
         likes += 1;
         icon.classList.add("liked");
         icon.setAttribute("aria-pressed", "true");
+
+        // セッションにフラグ保存
+        sessionStorage.setItem(sessionKey, "1");
+
+        // GA4へ送信（増減 = +1）
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "like_button",
+          like_location: gtmId,
+          action: "like",
+          like_value: 1
+        });
       }
 
-      // Update count
+      // UIカウント更新 + 保存
       localStorage.setItem(storeKey, String(likes));
       if (countEl) countEl.textContent = String(likes);
-
-      // Push event to GTM/GA4
-      window.dataLayer.push({
-        event: "like",
-        like_location: gtmId,
-        like_total: likes,
-        action: isLiked ? "unlike" : "like"
-      });
     }
 
     // Mouse click
