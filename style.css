@@ -289,6 +289,20 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-
 /* Video block */
 .video-wrap video { width: 100%; height: auto; display: block; border-radius: 10px; }
 
+/* Overlay on videos */
+.video-wrap {
+  position: relative;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;         /* match the video border radius */
+  background: rgba(0, 0, 0, .35);  /* darken amount */
+  pointer-events: none;         /* don’t block video controls */
+  z-index: 1;
+}
+
 .video-caption-row{
   display: flex;
   align-items: center;
