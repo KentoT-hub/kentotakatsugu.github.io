@@ -254,17 +254,17 @@ window.dataLayer = window.dataLayer || [];
 
 (function setupLikeIcons(){
   document.querySelectorAll(".like-icon").forEach(icon => {
-    const gtmId     = icon.getAttribute("data-gtm-id");
-    const countEl   = icon.parentElement.querySelector(".like-count");
-    const storeKey  = "likes_" + gtmId;              // ブラウザごとの合計保持
-    const sessionKey = "liked_session_" + gtmId;     // セッションごとの1回制御
+    const gtmId    = icon.getAttribute("data-gtm-id");
+    const countEl  = icon.parentElement.querySelector(".like-count");
+    const storeKey = "likes_" + gtmId;       // 合計カウント保存
+    const lockKey  = "liked_flag_" + gtmId;  // 1ユーザー1回制御用フラグ
 
-    // Load existing count (合計は localStorage から復元)
+    // 既存の合計値をロード
     let likes = parseInt(localStorage.getItem(storeKey) || "0", 10);
     if (countEl) countEl.textContent = String(likes);
 
-    // セッション内で既にLike済みならUIも復元
-    if (sessionStorage.getItem(sessionKey) === "1") {
+    // すでにLike済みならUI復元
+    if (localStorage.getItem(lockKey) === "1") {
       icon.classList.add("liked");
       icon.setAttribute("aria-pressed", "true");
     }
@@ -273,15 +273,16 @@ window.dataLayer = window.dataLayer || [];
       const isLiked = icon.classList.contains("liked");
 
       if (isLiked) {
-        // Unlike
+        // Unlike処理
         likes = Math.max(0, likes - 1);
+        localStorage.setItem(storeKey, String(likes));
+        localStorage.removeItem(lockKey); // フラグ解除
+
         icon.classList.remove("liked");
         icon.setAttribute("aria-pressed", "false");
+        if (countEl) countEl.textContent = String(likes);
 
-        // セッションのフラグ解除
-        sessionStorage.removeItem(sessionKey);
-
-        // GA4へ送信（増減 = -1）
+        // GA4へ送信（-1）
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: "like_button",
@@ -291,18 +292,19 @@ window.dataLayer = window.dataLayer || [];
         });
 
       } else {
-        // すでにセッションでLike済みなら再Like禁止
-        if (sessionStorage.getItem(sessionKey) === "1") return;
+        // すでにLike済みなら何もしない
+        if (localStorage.getItem(lockKey) === "1") return;
 
-        // Like
+        // Like処理
         likes += 1;
+        localStorage.setItem(storeKey, String(likes));
+        localStorage.setItem(lockKey, "1");
+
         icon.classList.add("liked");
         icon.setAttribute("aria-pressed", "true");
+        if (countEl) countEl.textContent = String(likes);
 
-        // セッションにフラグ保存
-        sessionStorage.setItem(sessionKey, "1");
-
-        // GA4へ送信（増減 = +1）
+        // GA4へ送信（+1）
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: "like_button",
@@ -311,16 +313,12 @@ window.dataLayer = window.dataLayer || [];
           like_value: 1
         });
       }
-
-      // UIカウント更新 + 保存
-      localStorage.setItem(storeKey, String(likes));
-      if (countEl) countEl.textContent = String(likes);
     }
 
-    // Mouse click
+    // クリックイベント
     icon.addEventListener("click", toggleLike);
 
-    // Keyboard (Enter or Space)
+    // キーボード操作 (Enter / Space)
     icon.addEventListener("keydown", e => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
