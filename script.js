@@ -255,13 +255,12 @@ window.dataLayer = window.dataLayer || [];
 (function setupLikeIcons(){
   document.querySelectorAll(".like-icon").forEach(icon => {
     const gtmId    = icon.getAttribute("data-gtm-id");
-    const countEl  = icon.parentElement.querySelector(".like-count");
     const storeKey = "likes_" + gtmId;       // 合計カウント保存
     const lockKey  = "liked_flag_" + gtmId;  // 1ユーザー1回制御用フラグ
 
     // 既存の合計値をロード
     let likes = parseInt(localStorage.getItem(storeKey) || "0", 10);
-    if (countEl) countEl.textContent = String(likes);
+    
 
     // すでにLike済みならUI復元
     if (localStorage.getItem(lockKey) === "1") {

@@ -324,14 +324,6 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-
   color: #bbb; /* lighter grey hover before liked */
 }
 
-/* Count text */
-.like-count{
-  font-weight: 500;
-  font-size: 15px;
-  color: #fff;
-  min-width: 1ch;
-}
-
 /* Like Text */ 
 .like-text {
   color: #fff;
