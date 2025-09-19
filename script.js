@@ -1,4 +1,4 @@
-// ====== ブラウザ側ページ切り替え用＃ Brou-side hash router (/about, /strengths, /goals) ======
+// ====== Client-side hash router (/about, /strengths, /goals) ======
 const ROUTES = ["/about", "/strengths", "/goals"];
 const ROUTE_TITLES = {
   "/about": "基本情報",
