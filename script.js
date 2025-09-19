@@ -1,4 +1,4 @@
-// ====== Client-side hash router (/about, /strengths, /goals) ======
+// ====== ブラウザ側ページ切り替え用＃ Brou-side hash router (/about, /strengths, /goals) ======
 const ROUTES = ["/about", "/strengths", "/goals"];
 const ROUTE_TITLES = {
   "/about": "基本情報",
@@ -127,11 +127,6 @@ function handleHash(){
   trackRouteCount(path);      
 }
 
-/* Hash routing */
-function handleHash(){
-  const path = location.hash.replace(/^#/, "") || "/about";
-  showRoute(path);
-}
 window.addEventListener("hashchange", handleHash);
 window.addEventListener("load", handleHash);
 

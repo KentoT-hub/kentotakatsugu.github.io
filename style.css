@@ -13,11 +13,6 @@
 }
 
 *{box-sizing:border-box}
-html,body{
-  margin:0; padding:0;
-  background:var(--bg); color:var(--ink);
-  font:16px/1.6 "Times New Roman", Times, serif, "Hiragino Mincho ProN", "MS Mincho", serif;
-}
 img,video{max-width:100%;height:auto;display:block;border-radius:12px}
 
 /* ====== Header ====== */
@@ -288,7 +283,6 @@ img,video{max-width:100%;height:auto;display:block;border-radius:12px}
 
 /* ====== Like Buttons ====== */
 /* Layout helpers */
-* { box-sizing: border-box; }
 body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:#0c0c0c; color:#fff; }
 .container { max-width: 880px; margin: 32px auto; padding: 0 16px; }
 
@@ -363,4 +357,3 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-
 .like-icon.liked ~ .like-count {
   color: #5ee1a7;  
 }
-
